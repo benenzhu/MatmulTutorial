@@ -153,8 +153,8 @@ int main(int argc, char *argv[])
     CUDA_CHECK(cudaMemcpy(dB, hB, K * N * 2, cudaMemcpyHostToDevice));
     CUDA_CHECK(cudaMemcpy(dC, hC, M * N * 2, cudaMemcpyHostToDevice));
 
-    dim3 dimBlock(32, 2 * MULTI_THREADING, 2);
-    dim3 dimGrid(N / 128, M / 128);
+    dim3 dimBlock(32, 2 * MULTI_THREADING, 2); // block: 32, 2, 2
+    dim3 dimGrid(N / 128, M / 128); // grid: N/128, M/128
 
 #ifndef DEBUG
     int smem_size = MAX(STAGES * 128 * 32 * 2 * 2, 128 * 128 * 4);
